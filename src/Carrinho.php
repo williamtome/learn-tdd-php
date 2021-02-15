@@ -8,22 +8,22 @@ class Carrinho
 {
     private $produtos = [];
 
-    public function addProduto($produto)
+    public function addProduto($produto): void
     {
         $this->produtos[] = $produto;
     }
 
-    public function getProdutos()
+    public function getProdutos(): array
     {
         return $this->produtos;
     }
 
-    public function getTotalProdutos()
+    public function getTotalProdutos(): int
     {
         return count($this->produtos);
     }
 
-    public function getTotalCompra()
+    public function getTotalCompra(): float
     {
         $totalCompra = 0;
 
