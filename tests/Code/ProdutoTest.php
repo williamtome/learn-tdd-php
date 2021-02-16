@@ -52,6 +52,15 @@ class ProdutoTest extends TestCase
         $this->product->setName('');
     }
 
+    public function testSeSetPriceLancaExceptionQuandoNaoInformado()
+    {
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('Parâmetro inválido. Por favor, informe um preço.');
+
+        $this->product = new Produto();
+        $this->product->setPrice('');
+    }
+
     public function testSeSetSlugLancaExceptionQuandoNaoInformada()
     {
         $this->expectException('\InvalidArgumentException');

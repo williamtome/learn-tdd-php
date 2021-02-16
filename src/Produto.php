@@ -43,6 +43,10 @@ class Produto
      */
     public function setPrice($price)
     {
+        if (!$price) {
+            throw new \InvalidArgumentException('Parâmetro inválido. Por favor, informe um preço.');
+        }
+
         $this->price = $price;
     }
 
