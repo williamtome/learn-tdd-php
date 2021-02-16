@@ -7,6 +7,18 @@ class ProdutoTest extends TestCase
 {
     private $product;
 
+    // Executada antes dos destes desta classe:
+    public static function setUpBeforeClass(): void
+    {
+        print __METHOD__;
+    }
+
+    // Executada depois dos destes desta classe:
+    public static function tearDownAfterClass(): void
+    {
+        print __METHOD__;
+    }
+
     public function testSeONomeDoProdutoESetadoCorretamente()
     {
         $this->product = new Produto();
