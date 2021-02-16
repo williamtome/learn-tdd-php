@@ -63,7 +63,7 @@ class Produto
      */
     public function setSlug($slug)
     {
-        if ($slug === '') {
+        if (!$slug) {
             throw new \InvalidArgumentException('Parâmentro inválido! Por favor, informe um slug.');
         }
 
