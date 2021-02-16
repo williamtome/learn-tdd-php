@@ -23,6 +23,10 @@ class Produto
      */
     public function setName($name)
     {
+        if (!$name) {
+            throw new \InvalidArgumentException('Parâmetro inválido. Por favor, informe um nome.');
+        }
+
         $this->name = $name;
     }
 

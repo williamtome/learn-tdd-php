@@ -43,6 +43,15 @@ class ProdutoTest extends TestCase
         $this->assertEquals("product-1", $this->product->getSlug());
     }
 
+    public function testSeSetNameLancaExceptionQuandoNaoInformado()
+    {
+        $this->expectException('\InvalidArgumentException');
+        $this->expectExceptionMessage('Parâmetro inválido. Por favor, informe um nome.');
+
+        $this->product = new Produto();
+        $this->product->setName('');
+    }
+
     public function testSeSetSlugLancaExceptionQuandoNaoInformada()
     {
         $this->expectException('\InvalidArgumentException');
