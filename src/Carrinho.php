@@ -23,6 +23,11 @@ class Carrinho
         return count($this->produtos);
     }
 
+    public function isEmptyCarrinho(): bool
+    {
+        return empty($this->produtos);
+    }
+
     public function getTotalCompra(): float
     {
         $totalCompra = 0;

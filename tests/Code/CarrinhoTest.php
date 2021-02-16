@@ -100,6 +100,11 @@ class CarrinhoTest extends TestCase
         $this->assertEquals(44.80, $carrinho->getTotalCompra());
     }
 
+    public function testSeCarrinhoEstaVazio()
+    {
+        $this->assertTrue($this->carrinho->isEmptyCarrinho());
+    }
+
     public function testIncompleto()
     {
         $this->markTestIncomplete('Este teste está incompleto!');
