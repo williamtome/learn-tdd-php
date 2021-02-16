@@ -26,10 +26,21 @@ class CarrinhoTest extends TestCase
     // Manipular vários produtos.
     // Visualizar produtos.
     // Total de produtos | total compra.
-    public function testSeClasseCarrinhoExiste()
+//    public function testSeClasseCarrinhoExiste()
+//    {
+//        $classe = class_exists("Code\\Carrinho");
+//        $this->assertTrue($classe);
+//    }
+
+    protected function assertPreConditions(): void
     {
         $classe = class_exists("Code\\Carrinho");
         $this->assertTrue($classe);
+    }
+
+    protected function assertPostConditions(): void
+    {
+        // executa depois dos testes e o método tearDown.
     }
 
     public function testAdicaoDeProdutosNoCarrinho()
