@@ -71,12 +71,12 @@ class CarrinhoTest extends TestCase
 
     public function testSeTotalDeProdutosNoCarrinhoEstaoCorretos()
     {
-        $produto = $this->produto;
+        $produto = new Produto();
         $produto->setName('Produto 1');
         $produto->setPrice(19.90);
         $produto->setSlug('produto-1');
 
-        $produto2 = $this->produto;
+        $produto2 = new Produto();
         $produto2->setName('Produto 2');
         $produto2->setPrice(24.90);
         $produto2->setSlug('produto-2');
