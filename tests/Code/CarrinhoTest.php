@@ -140,9 +140,16 @@ class CarrinhoTest extends TestCase
         $totalProdutos = $carrinho->getTotalProdutos();
 
         if ($totalProdutos > 0) {
+
             $carrinho->removeProduto($produto2);
+
+            $this->assertNotContains($produto2, $carrinho->getProdutos());
+
+        } else {
+
+            $this->assertEmpty($carrinho->getProdutos());
+
         }
 
-        $this->assertNotContains($produto2, $carrinho->getProdutos());
     }
 }
