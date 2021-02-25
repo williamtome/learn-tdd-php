@@ -8,9 +8,12 @@ class Carrinho
 {
     private $produtos = [];
 
-    public function addProduto($produto): void
+    public function addProduto($produto, Log $log = null)
     {
         $this->produtos[] = $produto;
+
+        if (!is_null($log))
+            $log->log('Adicionando produto no carrinho');
     }
 
     public function removeProduto($produto): void
