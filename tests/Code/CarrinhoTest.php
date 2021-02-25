@@ -71,13 +71,10 @@ class CarrinhoTest extends TestCase
 //        $produto->setName('Produto 1');
 //        $produto->setPrice(19.90);
 //        $produto->setSlug('produto-1');
-        $produtoStub = $this->createMock(\Code\Produto::class);
-        $produtoStub->method('getName')->willReturn('Produto 1');
-        $produtoStub->method('getPrice')->willReturn(19.90);
-        $produtoStub->method('getSlug')->willReturn('produto-1');
+        $stubProduto = $this->getStubProduto();
 
         $carrinho = $this->carrinho;
-        $carrinho->addProduto($produtoStub);
+        $carrinho->addProduto($stubProduto);
 
         $this->assertEquals('Produto 1', $carrinho->getProdutos()[0]->getName());
         $this->assertEquals(19.90, $carrinho->getProdutos()[0]->getPrice());
@@ -156,4 +153,36 @@ class CarrinhoTest extends TestCase
         }
 
     }
+
+    /*
+     * @test
+     */
+    public function seLogESalvoQuandoInformadoParaAAdicaoDeProduto()
+    {
+        $carrinho = new Carrinho();
+
+        // Obter mock da classe Log:
+        $logMock = $this->getMockBuilder(Log::class)
+                        ->onlyMethods(['log'])
+                        ->getMock();
+
+        // Testar uma vez o comportamento do método log da
+        // classe mockada, passando um valor no parâmetro:
+        $logMock->expects($this->once())
+                ->method('log')
+                ->with($this->equalTo('Adicionando produto no carrinho.'));
+
+        $carrinho->addProduto($this->getStubProduto(), $logMock);
+    }
+
+    private function getStubProduto()
+    {
+        $produtoStub = $this->createMock(\Code\Produto::class);
+        $produtoStub->method('getName')->willReturn('Produto 1');
+        $produtoStub->method('getPrice')->willReturn(19.90);
+        $produtoStub->method('getSlug')->willReturn('produto-1');
+        return $produtoStub;
+    }
+
+
 }
