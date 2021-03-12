@@ -1,0 +1,20 @@
+{
+  "authors": [
+    {
+      "name": "William Tomé",
+      "email": "william.tomenh@gmail.com"
+    }
+  ],
+  "require": {
+    "phpunit/phpunit": "^9.5"
+  },
+  "autoload": {
+  "psr-4": {
+    "Component\\QueryBuilder\\": "src"
+  }
+},
+  "scripts": {
+    "test": "vendor/bin/phpunit",
+    "testdox": "vendor/bin/phpunit --testdox"
+  }
+}
