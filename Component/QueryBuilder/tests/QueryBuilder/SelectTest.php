@@ -28,4 +28,14 @@ class SelectTest extends TestCase
         $query = $this->select->getSql();
         $this->assertEquals('SELECT * FROM products', $query);
     }
+
+    /**
+     * @test
+     */
+    public function ifSelectIsGeneratedWithWhereConditions()
+    {
+        $query = $this->select->where('name', '=', 'Produto 1');
+
+        $this->assertEquals('SELECT * FROM products WHERE name = :name', $query->getSql());
+    }
 }

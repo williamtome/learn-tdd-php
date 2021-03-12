@@ -20,6 +20,12 @@ class Select
         $this->query = 'SELECT * FROM ' . $table;
     }
 
+    public function where($column, $operator, $value): object
+    {
+        $this->query .= ' WHERE ' . $column . ' ' . $operator . ' :' . $column;
+        return $this;
+    }
+
     /**
      * @return string
      */
