@@ -1,6 +1,6 @@
 {
     "require": {
-        "phpunit/phpunit": "^9.5"
+        "vendor/phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
@@ -10,5 +10,7 @@
     "scripts": {
         "test": "vendor/bin/phpunit",
         "testdox": "vendor/bin/phpunit --testdox"
-    }
+    },
+    "name": "",
+    "description": ""
 }
