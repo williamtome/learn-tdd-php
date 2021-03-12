@@ -9,10 +9,15 @@
     "phpunit/phpunit": "^9.5"
   },
   "autoload": {
-  "psr-4": {
-    "Component\\QueryBuilder\\": "src"
-  }
-},
+    "psr-4": {
+      "Code\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "CodeTests\\": "tests"
+    }
+  },
   "scripts": {
     "test": "vendor/bin/phpunit",
     "testdox": "vendor/bin/phpunit --testdox"
