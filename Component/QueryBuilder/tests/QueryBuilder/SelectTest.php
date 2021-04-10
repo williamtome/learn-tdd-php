@@ -38,4 +38,12 @@ class SelectTest extends TestCase
 
         $this->assertEquals('SELECT * FROM products WHERE name = :name', $query->getSql());
     }
+
+    /**
+     * @test
+     */
+    public function ifQueryAllowUsAddMoreConditionsInQueryWithWhere()
+    {
+
+    }
 }
