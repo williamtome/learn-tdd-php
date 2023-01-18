@@ -6,31 +6,30 @@ namespace Code\QueryBuilder;
 
 class Select
 {
-    /**
-     * @var $query string
-     */
-    private $query;
+    private string $query;
+    private ?string $where;
 
-    /**
-     * Select constructor.
-     * @param $table string
-     */
-    public function __construct($table)
+    public function __construct(string $table)
     {
         $this->query = 'SELECT * FROM ' . $table;
+        $this->where = null;
     }
 
-    public function where($column, $operator, $value): object
+    public function where(string $column, string $operator, ?string $bind = null, string $concat = 'AND'): object
     {
-        $this->query .= ' WHERE ' . $column . ' ' . $operator . ' :' . $column;
+        $bind = is_null($bind) 
+            ? ':' . $column 
+            : $bind;
+
+        $this->where .= !$this->where 
+            ? ' WHERE ' . $column . ' ' . $operator . ' ' . $bind
+            : ' ' . $concat . ' ' . $column . ' ' . $operator . ' ' . $bind;
+
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getSql(): string
     {
-        return $this->query;
+        return $this->query . $this->where;
     }
 }

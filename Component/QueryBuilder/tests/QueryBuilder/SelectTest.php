@@ -26,6 +26,7 @@ class SelectTest extends TestCase
     public function ifSelectBaseIsGeneratedWithSuccess()
     {
         $query = $this->select->getSql();
+
         $this->assertEquals('SELECT * FROM products', $query);
     }
 
@@ -34,7 +35,7 @@ class SelectTest extends TestCase
      */
     public function ifSelectIsGeneratedWithWhereConditions()
     {
-        $query = $this->select->where('name', '=', 'Produto 1');
+        $query = $this->select->where('name', '=', ':name');
 
         $this->assertEquals('SELECT * FROM products WHERE name = :name', $query->getSql());
     }
@@ -44,6 +45,12 @@ class SelectTest extends TestCase
      */
     public function ifQueryAllowUsAddMoreConditionsInQueryWithWhere()
     {
+        $query = $this->select->where('name', '=', ':name')
+            ->where('price', '=', ':price');
 
+        $this->assertEquals(
+            'SELECT * FROM products WHERE name = :name AND price = :price',
+            $query->getSql()
+        );
     }
 }
