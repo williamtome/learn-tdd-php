@@ -81,4 +81,18 @@ class SelectTest extends TestCase
             $query->getSql()
         );
     }
+
+    /**
+     * @test
+     */
+    public function ifQueryIsGenerateWithLimit()
+    {
+        $query = $this->select->where('price', '>=', ':price')
+            ->limit(10);
+
+        $this->assertEquals(
+            'SELECT * FROM products WHERE price >= :price LIMIT 10',
+            $query->getSql()
+        );
+    }
 }

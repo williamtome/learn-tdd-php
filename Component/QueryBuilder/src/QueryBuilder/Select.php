@@ -9,11 +9,13 @@ class Select
     private string $query;
     private ?string $where;
     private ?string $orderBy;
+    private ?string $limit;
 
     public function __construct(string $table)
     {
         $this->query = 'SELECT * FROM ' . $table;
         $this->where = $this->orderBy = null;
+        $this->limit = null;
     }
 
     public function where(string $column, string $operator, ?string $bind = null, string $concat = 'AND'): object
@@ -36,8 +38,15 @@ class Select
         return $this;
     }
 
+    public function limit(string $number)
+    {
+        $this->limit .= ' LIMIT ' . $number;
+
+        return $this;
+    }
+
     public function getSql(): string
     {
-        return $this->query . $this->where . $this->orderBy;
+        return $this->query . $this->where . $this->orderBy . $this->limit;
     }
 }
