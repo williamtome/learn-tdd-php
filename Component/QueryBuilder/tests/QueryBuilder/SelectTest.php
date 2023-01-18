@@ -43,13 +43,41 @@ class SelectTest extends TestCase
     /**
      * @test
      */
-    public function ifQueryAllowUsAddMoreConditionsInQueryWithWhere()
+    public function ifQueryAllowsAddMoreConditionsInQueryWithWhere()
     {
         $query = $this->select->where('name', '=', ':name')
             ->where('price', '=', ':price');
 
         $this->assertEquals(
             'SELECT * FROM products WHERE name = :name AND price = :price',
+            $query->getSql()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function ifQueryAllowsAddOrderByAscendant()
+    {
+        $query = $this->select->orderBy('name');
+
+        $this->assertEquals(
+            'SELECT * FROM products ORDER BY name ASC',
+            $query->getSql()
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function ifQueryAllowsAddOrderByDescendant()
+    {
+        $query = $this->select->where('name', '=', ':name')
+            ->where('price', '=', ':price')
+            ->orderBy('price', 'desc');
+
+        $this->assertEquals(
+            'SELECT * FROM products WHERE name = :name AND price = :price ORDER BY price DESC',
             $query->getSql()
         );
     }

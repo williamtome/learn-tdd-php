@@ -8,11 +8,12 @@ class Select
 {
     private string $query;
     private ?string $where;
+    private ?string $orderBy;
 
     public function __construct(string $table)
     {
         $this->query = 'SELECT * FROM ' . $table;
-        $this->where = null;
+        $this->where = $this->orderBy = null;
     }
 
     public function where(string $column, string $operator, ?string $bind = null, string $concat = 'AND'): object
@@ -28,8 +29,15 @@ class Select
         return $this;
     }
 
+    public function orderBy(string $column, string $direction = 'ASC'): object
+    {
+        $this->orderBy .= ' ORDER BY ' . $column . ' ' . strtoupper($direction) ?? 'DESC';
+
+        return $this;
+    }
+
     public function getSql(): string
     {
-        return $this->query . $this->where;
+        return $this->query . $this->where . $this->orderBy;
     }
 }
