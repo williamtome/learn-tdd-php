@@ -14,8 +14,7 @@ class Select
     public function __construct(string $table)
     {
         $this->query = 'SELECT * FROM ' . $table;
-        $this->where = $this->orderBy = null;
-        $this->limit = null;
+        $this->where = $this->orderBy = $this->limit = null;
     }
 
     public function where(string $column, string $operator, ?string $bind = null, string $concat = 'AND'): object
@@ -33,14 +32,14 @@ class Select
 
     public function orderBy(string $column, string $direction = 'ASC'): object
     {
-        $this->orderBy .= ' ORDER BY ' . $column . ' ' . strtoupper($direction) ?? 'DESC';
+        $this->orderBy = ' ORDER BY ' . $column . ' ' . strtoupper($direction) ?? 'DESC';
 
         return $this;
     }
 
     public function limit(string $number)
     {
-        $this->limit .= ' LIMIT ' . $number;
+        $this->limit = ' LIMIT ' . $number;
 
         return $this;
     }
